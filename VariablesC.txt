@@ -1,0 +1,20 @@
+| Tipo de variable | Descripción              | En `printf()` | En `scanf()` | Ejemplo                            |
+| ---------------- | ------------------------ | ------------- | ------------ | ---------------------------------- |
+| `int`            | Entero                   | `%d`          | `%d`         | `scanf("%d", &x);`                 |
+| `float`          | Decimal (coma flotante)  | `%f`          | `%f`         | `scanf("%f", &num);`               |
+| `double`         | Decimal más preciso      | `%lf`         | `%lf`        | `scanf("%lf", &num);`              |
+| `char`           | Un solo carácter         | `%c`          | `%c`         | `scanf("%c", &letra);`             |
+| `char[]`         | Cadena de texto (string) | `%s`          | `%s`         | `scanf("%s", nombre);` *(sin `&`)* |
+| `unsigned int`   | Entero sin signo         | `%u`          | `%u`         | `scanf("%u", &num);`               |
+| `long int`       | Entero largo             | `%ld`         | `%ld`        | `scanf("%ld", &num);`              |
+| `long long int`  | Entero muy largo         | `%lld`        | `%lld`       | `scanf("%lld", &num);`             |
+
+
+| Situación                     | ¿Se usa `&`?                 | Ejemplo                 |
+| ----------------------------- | ---------------------------- | ----------------------- |
+| Mostrar un valor (`printf`)   | ❌ No                         | `printf("%d", x);`      |
+| Guardar un valor con `scanf`  | ✅ Sí                         | `scanf("%d", &x);`      |
+| Mostrar un elemento de vector | ❌ No                         | `printf("%d", v[i]);`   |
+| Leer un elemento de vector    | ✅ Sí                         | `scanf("%d", &v[i]);`   |
+| Mostrar texto                 | ❌ No                         | `printf("%s", nombre);` |
+| Leer texto (string)           | ❌ No *(ya es una dirección)* | `scanf("%s", nombre);`  |
