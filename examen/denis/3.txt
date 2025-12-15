@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char *argv[]) {
+    FILE *fp;
+    char linea[512];
+    char a[5], b[50], c[50];
+
+    fp = popen("dpkg -l", "r");
+
+    while (fgets(linea, sizeof(linea), fp)) {
+        if (strstr(linea, argv[1]) != NULL) {
+            sscanf(linea, "%s %s %s", a, b, c);
+            printf("Paquete %s encontrado\nVersion %s\n", b, c);
+            pclose(fp);
+            return 0;
+        }
+    }
+
+    printf("No esta instalado\n");
+    pclose(fp);
+    return 0;
+}

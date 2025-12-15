@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+    FILE *archivo;
+    float valor;
+    float suma = 0;
+    int cont = 0;
+
+    archivo = fopen("notas.txt", "r");
+    if (archivo == NULL) {
+        printf("Error\n");
+        return 1;
+    }
+
+    while (fscanf(archivo, "%f", &valor) != EOF) {
+        suma = suma + valor;
+        cont++;
+    }
+
+    printf("Nota media final: %f\n", suma / cont);
+
+    fclose(archivo);
+    return 0;
+}
