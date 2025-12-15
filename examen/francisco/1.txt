@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+    FILE *archivo;
+    float nota;
+    float suma = 0;
+    int contador = 0;
+
+    archivo = fopen("notas.txt", "r");
+    if (archivo == NULL) {
+        printf("Error al abrir el fichero\n");
+        return 1;
+    }
+
+    while (fscanf(archivo, "%f", &nota) != EOF) {
+        suma = suma + nota;
+        contador++;
+    }
+
+    printf("La nota media es %f\n", suma / contador);
+
+    fclose(archivo);
+    return 0;
+}
