@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    FILE *fp;
+    char nombre[20];
+    int major, minor;
+    long bloques;
+
+    fp = fopen("/proc/partitions", "r");
+    if (fp == NULL) {
+        perror("Error al abrir /proc/partitions");
+        return 1;
+    }
+
+    while (fscanf(fp, "%d %d %ld %s", &major, &minor, &bloques, nombre) == 4) {
+        if (strcmp(nombre, "sda1") == 0) {
+            double gb = bloques * 4.0 / (1024 * 1024);
+            printf("Tamaño de sda1: %.2f GB\n", gb);
+            fclose(fp);
+            return 0;
+        }
+    }
+
+    fclose(fp);
+    printf("No se encontró la partición sda1\n");
+    return 1;
+}
